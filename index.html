@@ -451,15 +451,17 @@
       // ================================================
       const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxUHrLODqyTRSy6jbvIFUcVGwWn98DkY7SxcpENeQoK-NjmGlr3j5oRVysQnwnGsvTKqw/exec';
 
-      // Envia dados como JSON (compatível com doPost do Apps Script)
+      // Envia dados como JSON via no-cors (evita bloqueio CORS do Apps Script)
       fetch(APPS_SCRIPT_URL, {
         method: 'POST',
-        redirect: 'follow',
+        mode: 'no-cors',
+        headers: {
+          'Content-Type': 'text/plain'
+        },
         body: JSON.stringify(dados)
       })
-        .then(response => response.text())
-        .then((result) => {
-          // Exibe mensagem de sucesso
+        .then(() => {
+          // Com no-cors a resposta é opaque, mas os dados foram enviados
           form.style.display = 'none';
           document.querySelector('.form-card__title').style.display = 'none';
           successMessage.classList.add('show');
