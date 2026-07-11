@@ -38,7 +38,7 @@
 
     body {
       font-family: 'Poppins', sans-serif;
-      background-color: var(--fundo);
+      background-color: var(--azul-escuro);
       color: var(--azul-escuro);
       min-height: 100vh;
       display: flex;
@@ -47,6 +47,19 @@
       justify-content: center;
       padding: 40px 20px;
       line-height: 1.6;
+    }
+
+    /* ===== CONTAINER CENTRAL ===== */
+    .page-container {
+      background-color: var(--fundo);
+      width: 100%;
+      max-width: 640px;
+      padding: 40px 32px;
+      border-radius: var(--radius);
+      box-shadow: 0 0 60px rgba(0, 0, 0, 0.2);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     /* ===== CABEÇALHO ===== */
@@ -259,7 +272,14 @@
     /* ===== RESPONSIVIDADE ===== */
     @media (max-width: 600px) {
       body {
+        padding: 0;
+      }
+
+      .page-container {
+        border-radius: 0;
         padding: 24px 16px;
+        min-height: 100vh;
+        box-shadow: none;
       }
 
       .header__title {
@@ -302,6 +322,8 @@
   </style>
 </head>
 <body>
+
+  <div class="page-container">
 
   <!-- ===== CABEÇALHO ===== -->
   <header class="header">
@@ -392,6 +414,8 @@
   <footer class="footer">
     <p>&copy; 2026 Gestão do Zero ao Sucesso. Todos os direitos reservados.</p>
   </footer>
+
+  </div><!-- /.page-container -->
 
   <!-- ===== JAVASCRIPT ===== -->
   <script>
