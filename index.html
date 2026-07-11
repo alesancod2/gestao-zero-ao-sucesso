@@ -57,6 +57,22 @@
       padding-top: 0;
     }
 
+    .header__topo {
+      margin-bottom: 16px;
+      line-height: 0;
+      display: flex;
+      justify-content: center;
+    }
+
+    .header__topo .topo {
+      max-width: 480px;
+      width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+      border-radius: var(--radius);
+    }
+
     .header__logo {
       margin-bottom: -100px;
       margin-top: 0;
@@ -312,6 +328,9 @@
 
   <!-- ===== CABEÇALHO ===== -->
   <header class="header">
+    <div class="header__topo">
+      <img src="assets/topo.png" alt="Topo - Gestão do Zero ao Sucesso" class="topo">
+    </div>
     <div class="header__logo">
       <img src="assets/logo-gzs.png" alt="GZS - Gestão do Zero ao Sucesso" class="logo">
     </div>
