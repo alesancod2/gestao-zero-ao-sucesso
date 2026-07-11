@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestão do Zero ao Sucesso - Inscrição</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* ===== RESET E BASE ===== */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --verde-principal: #00B050;
+      --verde-hover: #009943;
+      --verde-light: rgba(0, 176, 80, 0.08);
+      --azul-escuro: #1D237E;
+      --azul-light: rgba(29, 35, 126, 0.05);
+      --fundo: #F9F9F9;
+      --branco: #FFFFFF;
+      --cinza-texto: #555555;
+      --cinza-borda: #E0E0E0;
+      --cinza-placeholder: #999999;
+      --sombra-card: 0 10px 40px rgba(29, 35, 126, 0.1);
+      --sombra-btn: 0 4px 15px rgba(0, 176, 80, 0.3);
+      --radius: 12px;
+      --transition: all 0.3s ease;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--fundo);
+      color: var(--azul-escuro);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+      line-height: 1.6;
+    }
+
+    /* ===== CABEÇALHO ===== */
+    .header {
+      text-align: center;
+      margin-bottom: 32px;
+      max-width: 600px;
+    }
+
+    .header__logo {
+      margin-bottom: 16px;
+    }
+
+    .header__title {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--azul-escuro);
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+
+    .header__title span.green {
+      color: var(--verde-principal);
+    }
+
+    .header__title span.blue {
+      color: var(--azul-escuro);
+    }
+
+    .header__subtitle {
+      font-size: 1.05rem;
+      font-weight: 400;
+      color: var(--cinza-texto);
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    /* ===== CARD DO FORMULÁRIO ===== */
+    .form-card {
+      background: var(--branco);
+      border-radius: var(--radius);
+      box-shadow: var(--sombra-card);
+      padding: 40px 36px;
+      width: 100%;
+      max-width: 480px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .form-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--verde-principal), var(--azul-escuro));
+    }
+
+    .form-card__title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--azul-escuro);
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    /* ===== CAMPOS DO FORMULÁRIO ===== */
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--azul-escuro);
+      margin-bottom: 6px;
+    }
+
+    .form-group label .required {
+      color: var(--verde-principal);
+      margin-left: 2px;
+    }
+
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      padding: 14px 16px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.95rem;
+      color: var(--azul-escuro);
+      background-color: var(--fundo);
+      border: 2px solid var(--cinza-borda);
+      border-radius: 8px;
+      outline: none;
+      transition: var(--transition);
+      -webkit-appearance: none;
+      appearance: none;
+    }
+
+    .form-group input::placeholder {
+      color: var(--cinza-placeholder);
+      font-weight: 300;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus {
+      border-color: var(--verde-principal);
+      background-color: var(--verde-light);
+      box-shadow: 0 0 0 3px rgba(0, 176, 80, 0.1);
+    }
+
+    .form-group select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%231D237E' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 16px center;
+      padding-right: 40px;
+      cursor: pointer;
+    }
+
+    /* ===== BOTÃO DE ENVIO ===== */
+    .btn-submit {
+      display: block;
+      width: 100%;
+      padding: 16px 24px;
+      margin-top: 28px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--branco);
+      background-color: var(--verde-principal);
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: var(--transition);
+      box-shadow: var(--sombra-btn);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .btn-submit:hover {
+      background-color: var(--verde-hover);
+      box-shadow: 0 6px 20px rgba(0, 176, 80, 0.4);
+      transform: translateY(-2px);
+    }
+
+    .btn-submit:active {
+      transform: translateY(0);
+      box-shadow: 0 2px 10px rgba(0, 176, 80, 0.3);
+    }
+
+    .btn-submit:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* ===== MENSAGEM DE SUCESSO ===== */
+    .success-message {
+      display: none;
+      text-align: center;
+      padding: 20px;
+      animation: fadeIn 0.5s ease;
+    }
+
+    .success-message.show {
+      display: block;
+    }
+
+    .success-message__icon {
+      font-size: 3rem;
+      margin-bottom: 12px;
+    }
+
+    .success-message__title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--verde-principal);
+      margin-bottom: 8px;
+    }
+
+    .success-message__text {
+      font-size: 0.95rem;
+      color: var(--cinza-texto);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ===== RODAPÉ ===== */
+    .footer {
+      margin-top: 32px;
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--cinza-placeholder);
+    }
+
+    /* ===== RESPONSIVIDADE ===== */
+    @media (max-width: 600px) {
+      body {
+        padding: 24px 16px;
+      }
+
+      .header__title {
+        font-size: 1.7rem;
+      }
+
+      .header__subtitle {
+        font-size: 0.95rem;
+      }
+
+      .form-card {
+        padding: 28px 20px;
+      }
+
+      .form-card__title {
+        font-size: 1.1rem;
+      }
+
+      .form-group input,
+      .form-group select {
+        padding: 12px 14px;
+        font-size: 0.9rem;
+      }
+
+      .btn-submit {
+        padding: 14px 20px;
+        font-size: 1rem;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .header__title {
+        font-size: 1.5rem;
+      }
+
+      .form-card {
+        padding: 24px 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== CABEÇALHO ===== -->
+  <header class="header">
+    <div class="header__logo">
+      <!-- Espaço reservado para o logotipo do evento -->
+    </div>
+    <h1 class="header__title">
+      <span class="green">G</span>estão do 
+      <span class="green">Z</span>ero ao 
+      <span class="blue">S</span>ucesso
+    </h1>
+    <p class="header__subtitle">
+      Garanta sua vaga no maior seminário de gestão empresarial. Transforme sua visão de negócio!
+    </p>
+  </header>
+
+  <!-- ===== CARD DO FORMULÁRIO ===== -->
+  <main class="form-card">
+    <h2 class="form-card__title">Inscreva-se Gratuitamente</h2>
+
+    <form id="formInscricao" novalidate>
+      <!-- Nome Completo -->
+      <div class="form-group">
+        <label for="nome">Nome Completo <span class="required">*</span></label>
+        <input 
+          type="text" 
+          id="nome" 
+          name="nome" 
+          placeholder="Digite seu nome completo" 
+          required 
+          autocomplete="name"
+        >
+      </div>
+
+      <!-- Cidade -->
+      <div class="form-group">
+        <label for="cidade">Cidade <span class="required">*</span></label>
+        <input 
+          type="text" 
+          id="cidade" 
+          name="cidade" 
+          placeholder="Sua cidade" 
+          required 
+          autocomplete="address-level2"
+        >
+      </div>
+
+      <!-- Telefone / WhatsApp -->
+      <div class="form-group">
+        <label for="telefone">Telefone / WhatsApp <span class="required">*</span></label>
+        <input 
+          type="tel" 
+          id="telefone" 
+          name="telefone" 
+          placeholder="(00) 00000-0000" 
+          required 
+          autocomplete="tel"
+          maxlength="15"
+        >
+      </div>
+
+      <!-- Segmento do Negócio -->
+      <div class="form-group">
+        <label for="segmento">Segmento do Negócio <span class="required">*</span></label>
+        <select id="segmento" name="segmento" required>
+          <option value="" disabled selected>Selecione seu segmento</option>
+          <option value="Comércio">Comércio</option>
+          <option value="Serviços">Serviços</option>
+          <option value="Indústria">Indústria</option>
+          <option value="Tecnologia">Tecnologia</option>
+          <option value="Saúde">Saúde</option>
+          <option value="Educação">Educação</option>
+          <option value="Alimentação">Alimentação</option>
+          <option value="Outros">Outros</option>
+        </select>
+      </div>
+
+      <!-- Botão de Envio -->
+      <button type="submit" class="btn-submit">Garantir Minha Vaga</button>
+    </form>
+
+    <!-- Mensagem de Sucesso (exibida após envio) -->
+    <div class="success-message" id="successMessage">
+      <div class="success-message__icon">&#10004;</div>
+      <h3 class="success-message__title">Inscrição Realizada!</h3>
+      <p class="success-message__text">
+        Sua vaga foi garantida com sucesso. Em breve você receberá mais informações pelo WhatsApp.
+      </p>
+    </div>
+  </main>
+
+  <!-- ===== RODAPÉ ===== -->
+  <footer class="footer">
+    <p>&copy; 2026 Gestão do Zero ao Sucesso. Todos os direitos reservados.</p>
+  </footer>
+
+  <!-- ===== JAVASCRIPT ===== -->
+  <script>
+    // ==========================================
+    // MÁSCARA DE TELEFONE (formato brasileiro)
+    // ==========================================
+    const telefoneInput = document.getElementById('telefone');
+
+    telefoneInput.addEventListener('input', function (e) {
+      let valor = e.target.value.replace(/\D/g, ''); // Remove tudo que não é dígito
+
+      if (valor.length > 11) valor = valor.slice(0, 11);
+
+      if (valor.length > 6) {
+        valor = `(${valor.slice(0, 2)}) ${valor.slice(2, 7)}-${valor.slice(7)}`;
+      } else if (valor.length > 2) {
+        valor = `(${valor.slice(0, 2)}) ${valor.slice(2)}`;
+      } else if (valor.length > 0) {
+        valor = `(${valor}`;
+      }
+
+      e.target.value = valor;
+    });
+
+    // ==========================================
+    // ENVIO DO FORMULÁRIO
+    // ==========================================
+    const form = document.getElementById('formInscricao');
+    const successMessage = document.getElementById('successMessage');
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault(); // Evita recarregar a página
+
+      // Coleta dos dados do formulário
+      const dados = {
+        nome: document.getElementById('nome').value.trim(),
+        cidade: document.getElementById('cidade').value.trim(),
+        telefone: document.getElementById('telefone').value.trim(),
+        segmento: document.getElementById('segmento').value
+      };
+
+      // Validação simples
+      if (!dados.nome || !dados.cidade || !dados.telefone || !dados.segmento) {
+        alert('Por favor, preencha todos os campos obrigatórios.');
+        return;
+      }
+
+      // Desabilita o botão durante o envio
+      const btnSubmit = form.querySelector('.btn-submit');
+      btnSubmit.disabled = true;
+      btnSubmit.textContent = 'Enviando...';
+
+      // ================================================
+      // !! COLE AQUI A URL DO SEU GOOGLE APPS SCRIPT !!
+      // Substitua a string abaixo pela URL gerada ao
+      // publicar seu Apps Script como Web App.
+      // ================================================
+      const APPS_SCRIPT_URL = 'COLE_SUA_URL_DO_APPS_SCRIPT_AQUI';
+
+      fetch(APPS_SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors', // Necessário para Apps Script
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(dados)
+      })
+        .then(() => {
+          // Exibe mensagem de sucesso
+          form.style.display = 'none';
+          document.querySelector('.form-card__title').style.display = 'none';
+          successMessage.classList.add('show');
+        })
+        .catch((erro) => {
+          console.error('Erro ao enviar:', erro);
+          alert('Ocorreu um erro ao enviar sua inscrição. Tente novamente.');
+          btnSubmit.disabled = false;
+          btnSubmit.textContent = 'Garantir Minha Vaga';
+        });
+    });
+  </script>
+</body>
+</html>
