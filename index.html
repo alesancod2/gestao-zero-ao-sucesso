@@ -451,27 +451,38 @@
       // ================================================
       const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxUHrLODqyTRSy6jbvIFUcVGwWn98DkY7SxcpENeQoK-NjmGlr3j5oRVysQnwnGsvTKqw/exec';
 
-      // Envia dados como JSON via no-cors (evita bloqueio CORS do Apps Script)
-      fetch(APPS_SCRIPT_URL, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: {
-          'Content-Type': 'text/plain'
-        },
-        body: JSON.stringify(dados)
-      })
-        .then(() => {
-          // Com no-cors a resposta é opaque, mas os dados foram enviados
-          form.style.display = 'none';
-          document.querySelector('.form-card__title').style.display = 'none';
-          successMessage.classList.add('show');
-        })
-        .catch((erro) => {
-          console.error('Erro ao enviar:', erro);
-          alert('Ocorreu um erro ao enviar sua inscrição. Tente novamente.');
-          btnSubmit.disabled = false;
-          btnSubmit.textContent = 'Garantir Minha Vaga';
-        });
+      // Envia dados via iframe oculto (contorna CORS do Apps Script)
+      const iframe = document.createElement('iframe');
+      iframe.name = 'hidden_iframe';
+      iframe.style.display = 'none';
+      document.body.appendChild(iframe);
+
+      const hiddenForm = document.createElement('form');
+      hiddenForm.method = 'POST';
+      hiddenForm.action = APPS_SCRIPT_URL;
+      hiddenForm.target = 'hidden_iframe';
+
+      // Cria campos hidden com os dados
+      Object.keys(dados).forEach(key => {
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = key;
+        input.value = dados[key];
+        hiddenForm.appendChild(input);
+      });
+
+      document.body.appendChild(hiddenForm);
+      hiddenForm.submit();
+
+      // Exibe sucesso após breve delay (tempo para o form ser enviado)
+      setTimeout(() => {
+        form.style.display = 'none';
+        document.querySelector('.form-card__title').style.display = 'none';
+        successMessage.classList.add('show');
+        // Limpeza
+        document.body.removeChild(hiddenForm);
+        document.body.removeChild(iframe);
+      }, 1500);
     });
   </script>
 </body>
