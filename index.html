@@ -451,16 +451,11 @@
       // ================================================
       const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxUHrLODqyTRSy6jbvIFUcVGwWn98DkY7SxcpENeQoK-NjmGlr3j5oRVysQnwnGsvTKqw/exec';
 
-      // Envia dados como FormData (compatível com Google Apps Script)
-      const formData = new FormData();
-      formData.append('nome', dados.nome);
-      formData.append('cidade', dados.cidade);
-      formData.append('telefone', dados.telefone);
-      formData.append('segmento', dados.segmento);
-
+      // Envia dados como JSON (compatível com doPost do Apps Script)
       fetch(APPS_SCRIPT_URL, {
         method: 'POST',
-        body: formData
+        redirect: 'follow',
+        body: JSON.stringify(dados)
       })
         .then(response => response.text())
         .then((result) => {
